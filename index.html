@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolu Pet Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        .bg-puffles { background-color: #FFD93D; }
+        .text-puffles { color: #FFD93D; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* Custom Animations */
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        .animate-cart { animation: slideInRight 0.3s ease-out; }
+
+        .product-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .product-card:hover { transform: translateY(-12px); }
+
+        .btn-bounce:active { transform: scale(0.9); }
+        
+        /* Floating Animation for Hero Image */
+        @keyframes floating {
+            0% { transform: translate(0, 0px) scale(1.1); }
+            50% { transform: translate(0, 15px) scale(1.1); }
+            100% { transform: translate(0, -0px) scale(1.1); }
+        }
+        .floating-img { animation: floating 3s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-gray-50">
+<header class="bg-white border-b border-gray-100 sticky top-0 z-[100] shadow-sm">
+    <div class="hidden md:flex justify-between items-center px-20 py-4 border-b border-gray-50">
+        <div class="flex items-center space-x-2 text-xs text-gray-500">
+            <i class="fa-solid fa-location-dot text-puffles text-lg"></i>
+            <div>
+                <p class="font-bold text-gray-800">Palembang, Sumatra selatan</p>
+                <p>Jl.pangeran Sw subekti, No.23, 26 ilir</p>
+            </div>
+        </div>
+        
+        <div class="text-center translate-x-12">
+            <h1 class="text-3xl font-extrabold text-puffles leading-none">Bolu</h1>
+            <p class="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-bold">Pet shop</p>
+        </div>
+    </div>
+
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="md:hidden">
+            <h1 class="text-2xl font-extrabold text-puffles">Bolu</h1>
+        </div>
+
+        <ul class="hidden md:flex items-center space-x-10 font-extrabold text-[11px] uppercase tracking-[0.2em] text-gray-600">
+            <li><a href="#" class="text-puffles border-b-2 border-puffles pb-1">Home</a></li>
+            <li><a href="galerry.html" class="hover:text-puffles transition">Gallery</a></li>
+            <li><a href="about.html" class="hover:text-puffles transition">About</a></li>
+            <li><a href="blog.html" class="hover:text-puffles transition">Blog</a></li>
+        </ul>
+
+        <div class="flex items-center space-x-5 text-gray-700">
+            <button class="hover:text-puffles transition"><i class="fa-solid fa-magnifying-glass text-lg"></i></button>
+            
+            <div class="relative cursor-pointer group" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping text-lg group-hover:text-puffles transition"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-puffles text-white text-[9px] rounded-full w-4 h-4 flex items-center justify-center font-bold shadow-sm">0</span>
+            </div>
+
+            <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[110] transform translate-x-full transition-transform duration-300 md:hidden overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-10">
+                <h1 class="text-2xl font-extrabold text-puffles">Bolu</h1>
+                <button onclick="toggleMobileMenu()" class="text-3xl text-gray-400">&times;</button>
+            </div>
+            
+            <div class="flex items-center space-x-3 text-sm text-gray-600 mb-10 pb-8 border-b">
+                <i class="fa-solid fa-location-dot text-puffles text-2xl"></i>
+                <div>
+                    <p class="font-bold text-gray-800">Palembang, Sumatra selatan</p>
+                    <p>Jl.pangeran Sw subekti, No.23, 26 ilir</p>
+                </div>
+            </div>
+
+            <ul class="space-y-6 font-bold text-xl text-gray-800">
+                <li><a href="#" onclick="toggleMobileMenu()">Home</a></li>
+                <li><a href="galerry.html" onclick="toggleMobileMenu()">Gallery</a></li>
+                <li><a href="about.html" onclick="toggleMobileMenu()">about</a></li>
+                <li><a href="#" onclick="toggleMobileMenu()">Shop</a></li>
+            </ul>
+            
+            <div class="mt-10">
+                <button class="w-full border-2 border-puffles text-puffles py-3 rounded-md font-bold text-sm uppercase tracking-wider hover:bg-puffles hover:text-white transition duration-300">
+                    <i class="fa-regular fa-envelope mr-2"></i> Get in touch
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (menu.classList.contains('translate-x-full')) {
+            menu.classList.remove('translate-x-full');
+        } else {
+            menu.classList.add('translate-x-full');
+        }
+    }
+</script>
+<section class="min-h-[500px] flex items-center px-6 md:px-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-puffles opacity-85 z-10"></div>
+    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1600&q=80" class="absolute inset-0 w-full h-full object-cover z-0">
+
+    <div id="home" class="container mx-auto grid md:grid-cols-2 items-center gap-10 relative z-20">
+    <div class="text-white space-y-6 text-center md:text-left py-10" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-6xl md:text-8xl font-extrabold leading-tight">Bolu</h2>
+        <p class="text-xl md:text-2xl font-bold uppercase tracking-wider opacity-90">Make your pets happy</p>
+        <p class="max-w-md mx-auto md:mx-0 opacity-80">Produk berkualitas tinggi untuk kenyamanan dan kebahagiaan anabul kesayangan Anda.</p>
+        
+        <a href="https://maps.app.goo.gl/gdSF6jx88ZdaHMoaA?g_st=ai" target="_blank" 
+           class="inline-flex items-center btn-bounce bg-white text-gray-800 px-10 py-4 rounded-md font-bold uppercase shadow-xl hover:bg-gray-100 transition">
+            <i class="fas fa-map-marker-alt mr-3 text-puffles"></i>
+            Lokasi Kami
+        </a>
+    </div>
+</div>
+</section>
+
+<section class="py-20 container mx-auto px-6">
+    <div class="text-center mb-12" data-aos="fade-up">
+        <h3 class="text-3xl font-extrabold text-gray-800">Shop Our Best Sellers</h3>
+        <div class="w-16 h-1 bg-puffles mx-auto mt-4"></div>
+    </div>
+
+    <div id="Etalase" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="100">
+            <div class="overflow-hidden rounded-2xl mb-4">
+                <img src="https://images.unsplash.com/photo-1589924691106-073b69f5938c?w=400" class="h-48 w-full object-cover hover:scale-110 transition duration-500">
+            </div>
+            <h4 class="font-bold text-gray-800">Organic Dog Food</h4>
+            <p class="text-puffles font-black text-xl mb-4">Rp 150.000</p>
+            <button onclick="addToCart('Organic Dog Food', 150000, 'https://images.unsplash.com/photo-1589924691106-073b69f5938c?w=100')" 
+                    class="btn-bounce mt-auto w-full bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-puffles transition text-sm">
+                ADD TO CART
+            </button>
+        </div>
+        <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+            <div class="overflow-hidden rounded-2xl mb-4">
+                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=400" class="h-48 w-full object-cover hover:scale-110 transition duration-500">
+            </div>
+            <h4 class="font-bold text-gray-800">Cat Toy Premium</h4>
+            <p class="text-puffles font-black text-xl mb-4">Rp 45.000</p>
+            <button onclick="addToCart('Cat Toy Premium', 45000, 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=100')" 
+                    class="btn-bounce mt-auto w-full bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-puffles transition text-sm">
+                ADD TO CART
+            </button>
+        </div>
+        <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="300">
+            <div class="overflow-hidden rounded-2xl mb-4">
+                <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400" class="h-48 w-full object-cover hover:scale-110 transition duration-500">
+            </div>
+            <h4 class="font-bold text-gray-800">Pet Shampoo 500ml</h4>
+            <p class="text-puffles font-black text-xl mb-4">Rp 85.000</p>
+            <button onclick="addToCart('Pet Shampoo 500ml', 85000, 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=100')" 
+                    class="btn-bounce mt-auto w-full bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-puffles transition text-sm">
+                ADD TO CART
+            </button>
+        </div>
+        <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col" data-aos="fade-up" data-aos-delay="400">
+            <div class="overflow-hidden rounded-2xl mb-4">
+                <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400" class="h-48 w-full object-cover hover:scale-110 transition duration-500">
+            </div>
+            <h4 class="font-bold text-gray-800">Cozy Pet Bed</h4>
+            <p class="text-puffles font-black text-xl mb-4">Rp 225.000</p>
+            <button onclick="addToCart('Cozy Pet Bed', 225000, 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=100')" 
+                    class="btn-bounce mt-auto w-full bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-puffles transition text-sm">
+                ADD TO CART
+            </button>
+        </div>
+    </div>
+</section>
+
+<div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden flex justify-end">
+    <div class="bg-white w-full max-w-md h-full shadow-2xl p-6 flex flex-col animate-cart">
+        <div class="flex justify-between items-center border-b pb-4 mb-4">
+            <h3 class="text-xl font-bold text-gray-800 italic"><i class="fa-solid fa-cart-shopping mr-2 text-puffles"></i> My Cart</h3>
+            <button onclick="toggleCart()" class="text-3xl text-gray-400 hover:text-gray-900 transition">&times;</button>
+        </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto space-y-4 no-scrollbar"></div>
+        <div class="border-t pt-6 space-y-4">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-500 font-bold uppercase text-xs tracking-widest">Total</span>
+                <span id="cart-total" class="text-2xl font-black text-gray-900">Rp 0</span>
+            </div>
+            <button onclick="checkoutWhatsApp()" class="btn-bounce w-full bg-puffles text-gray-900 py-4 rounded-2xl font-black text-lg shadow-lg hover:brightness-105 transition">
+                CHECKOUT VIA WHATSAPP
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-6 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="space-y-6">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-puffles leading-none">Bolu</h2>
+                    <p class="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-bold">Pet shop</p>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Kami berdedikasi untuk memberikan kebahagiaan bagi hewan peliharaan Anda melalui produk berkualitas tinggi dan layanan kasih sayang sejak tahun 2024.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-puffles hover:bg-puffles hover:text-gray-900 transition-all duration-300">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-puffles hover:bg-puffles hover:text-gray-900 transition-all duration-300">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-puffles hover:bg-puffles hover:text-gray-900 transition-all duration-300">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6 relative inline-block">
+                    Layanan Kami
+                    <span class="absolute -bottom-2 left-0 w-8 h-1 bg-puffles"></span>
+                </h4>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Full Grooming</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Pet Hotel & Daycare</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Konsultasi Kesehatan</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Antar Jemput Anabul</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6 relative inline-block">
+                    Tautan Cepat
+                    <span class="absolute -bottom-2 left-0 w-8 h-1 bg-puffles"></span>
+                </h4>
+                <ul class="space-y-4 text-gray-400 text-sm font-semibold uppercase tracking-wider">
+                    <li><a href="#Etalase" class="hover:text-puffles transition-colors">Etalase Toko</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors">Tentang Kami</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors">Blog & Tips</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors">Hubungi Kami</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6 relative inline-block">
+                    Berlangganan
+                    <span class="absolute -bottom-2 left-0 w-8 h-1 bg-puffles"></span>
+                </h4>
+                <p class="text-gray-400 text-xs mb-4">Dapatkan info promo spesial setiap minggu!</p>
+                <form class="flex flex-col space-y-3">
+                    <input type="email" placeholder="Email Anda" class="bg-gray-800 border-none rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-puffles outline-none">
+                    <button class="bg-puffles text-gray-900 font-bold py-3 rounded-md hover:brightness-110 transition uppercase text-xs tracking-widest">
+                        Daftar Sekarang
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 space-y-4 md:space-y-0">
+            <p>&copy; 2026 Puffles Pet Shop. Dibuat dengan cinta untuk anabul.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        easing: 'ease-in-out'
+    });
+
+    let cart = JSON.parse(localStorage.getItem('puffles_data')) || [];
+    const waNumber = "8983712521"; // Format internasional
+
+    function updateUI() {
+        const cartItemsEl = document.getElementById('cart-items');
+        const totalEl = document.getElementById('cart-total');
+        const countEl = document.getElementById('cart-count');
+        
+        let total = 0;
+        let count = 0;
+        
+        if (cart.length === 0) {
+            cartItemsEl.innerHTML = `<div class="flex flex-col items-center justify-center h-64 text-gray-400 opacity-50"><i class="fa-solid fa-box-open text-5xl mb-4"></i><p>Empty Cart</p></div>`;
+            totalEl.innerText = "Rp 0";
+            countEl.innerText = "0";
+        } else {
+            let html = '';
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                count += item.quantity;
+                html += `
+                    <div class="flex items-center bg-gray-50 p-4 rounded-2xl gap-4 transform hover:scale-[1.02] transition duration-300 shadow-sm border border-white">
+                        <img src="${item.img}" class="w-16 h-16 rounded-lg object-cover">
+                        <div class="flex-grow">
+                            <h5 class="font-bold text-sm text-gray-800">${item.name}</h5>
+                            <p class="text-xs text-puffles font-bold">Rp ${item.price.toLocaleString()}</p>
+                            <div class="flex items-center gap-3 mt-2">
+                                <button onclick="changeQty(${index}, -1)" class="w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center text-xs shadow-sm hover:bg-puffles hover:border-puffles transition">-</button>
+                                <span class="text-sm font-bold">${item.quantity}</span>
+                                <button onclick="changeQty(${index}, 1)" class="w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center text-xs shadow-sm hover:bg-puffles hover:border-puffles transition">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-gray-300 hover:text-red-500 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+            });
+            cartItemsEl.innerHTML = html;
+            totalEl.innerText = `Rp ${total.toLocaleString()}`;
+            countEl.innerText = count;
+        }
+        localStorage.setItem('puffles_data', JSON.stringify(cart));
+    }
+
+    function addToCart(name, price, img) {
+        const index = cart.findIndex(i => i.name === name);
+        if (index > -1) {
+            cart[index].quantity++;
+        } else {
+            cart.push({ name, price, img, quantity: 1 });
+        }
+        updateUI();
+
+        // Button Animation Feedback
+        const btn = event.currentTarget;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "ADDED! ✓";
+        btn.classList.add('bg-green-500');
+        btn.classList.remove('bg-gray-900');
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.classList.remove('bg-green-500');
+            btn.classList.add('bg-gray-900');
+        }, 1200);
+    }
+
+    function changeQty(index, val) {
+        cart[index].quantity += val;
+        if (cart[index].quantity < 1) cart.splice(index, 1);
+        updateUI();
+    }
+
+    function removeItem(index) {
+        const item = document.querySelectorAll('#cart-items > div')[index];
+        item.style.transform = "translateX(100px)";
+        item.style.opacity = "0";
+        setTimeout(() => {
+            cart.splice(index, 1);
+            updateUI();
+        }, 300);
+    }
+
+    function toggleCart() {
+        const modal = document.getElementById('cart-modal');
+        modal.classList.toggle('hidden');
+    }
+
+    function checkoutWhatsApp() {
+        if (cart.length === 0) return;
+        let message = "Halo Puffles! Saya ingin memesan:\n\n";
+        let total = 0;
+        cart.forEach(item => {
+            message += `• ${item.name} (${item.quantity}x) = Rp ${(item.price * item.quantity).toLocaleString()}\n`;
+            total += item.price * item.quantity;
+        });
+        message += `\n*TOTAL: Rp ${total.toLocaleString()}*`;
+        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    updateUI();
+</script>
+</body>
+</html>

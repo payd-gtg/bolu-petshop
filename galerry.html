@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Bolu Pet Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        .bg-puffles { background-color: #FFD93D; }
+        .text-puffles { color: #FFD93D; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease forwards; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-[100] shadow-sm">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold text-puffles">Bolu</h1>
+            <a href="index.html" class="text-xs font-bold text-gray-600 hover:text-puffles">Kembali ke Home</a>
+        </nav>
+    </header>
+
+    <section class="py-20 container mx-auto px-6">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h3 class="text-4xl font-extrabold text-gray-800">Bolu Moments</h3>
+            <div class="w-16 h-1 bg-puffles mx-auto mt-4"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+            <button onclick="filterGallery('all')" class="gallery-btn px-6 py-2 rounded-full bg-puffles text-gray-900 font-bold text-xs uppercase transition hover:scale-105 shadow-md">All</button>
+            <button onclick="filterGallery('dog')" class="gallery-btn px-6 py-2 rounded-full bg-gray-100 text-gray-600 font-bold text-xs uppercase transition hover:bg-puffles hover:text-gray-900 shadow-sm">Dogs</button>
+            <button onclick="filterGallery('cat')" class="gallery-btn px-6 py-2 rounded-full bg-gray-100 text-gray-600 font-bold text-xs uppercase transition hover:bg-puffles hover:text-gray-900 shadow-sm">Cats</button>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
+            <div class="gallery-item dog overflow-hidden rounded-2xl aspect-square group relative cursor-pointer" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=500" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+            </div>
+            <div class="gallery-item cat overflow-hidden rounded-2xl aspect-square group relative cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=500" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+            </div>
+            <div class="gallery-item dog overflow-hidden rounded-2xl aspect-square group relative cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-10 pb-5 text-center text-xs">
+        &copy; 2026 Bolu Pet Shop.
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.gallery-btn');
+
+            // Update Button Styles
+            buttons.forEach(btn => {
+                btn.classList.replace('bg-puffles', 'bg-gray-100');
+                btn.classList.replace('text-gray-900', 'text-gray-600');
+            });
+            event.target.classList.replace('bg-gray-100', 'bg-puffles');
+            event.target.classList.replace('text-gray-600', 'text-gray-900');
+
+            // Filter Logic
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    item.classList.add('animate-fade-in');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

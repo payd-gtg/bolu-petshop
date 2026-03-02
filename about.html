@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Bolu Pet Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        .bg-puffles { background-color: #FFD93D; }
+        .text-puffles { color: #FFD93D; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* Custom Animations */
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        .animate-cart { animation: slideInRight 0.3s ease-out; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+<header class="bg-white border-b border-gray-100 sticky top-0 z-[100] shadow-sm">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold text-puffles">Puffles</h1>
+            <a href="index.html" class="text-xs font-bold text-gray-600 hover:text-puffles">Kembali ke Home</a>
+        </nav>
+    </header>
+
+<main class="py-16">
+    <div class="container mx-auto px-6">
+        
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+            <div data-aos="fade-right">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                    Dedikasi untuk <span class="text-puffles">Kebahagiaan</span> Anabul Anda.
+                </h2>
+                <p class="text-gray-600 mt-6 leading-relaxed">
+                    Berdiri sejak 2024, Bolu Pet Shop bermula dari kecintaan mendalam pada hewan peliharaan. Kami percaya bahwa setiap anabul berhak mendapatkan perawatan terbaik, kasih sayang, dan produk berkualitas tinggi.
+                </p>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Kami hadir tidak hanya sebagai toko, tetapi juga sebagai sahabat bagi Anda dan peliharaan Anda.
+                </p>
+            </div>
+            <div data-aos="fade-left" class="rounded-3xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800" alt="About Puffles" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-24">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100" data-aos="flip-left">
+                <div class="text-puffles text-4xl mb-6"><i class="fa-solid fa-eye"></i></div>
+                <h3 class="text-2xl font-bold text-gray-900">Visi Kami</h3>
+                <p class="text-gray-600 mt-4">Menjadi pusat perawatan hewan peliharaan terdepan yang mengutamakan kualitas, kasih sayang, dan kenyamanan di seluruh Indonesia.</p>
+            </div>
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100" data-aos="flip-right">
+                <div class="text-puffles text-4xl mb-6"><i class="fa-solid fa-bullseye"></i></div>
+                <h3 class="text-2xl font-bold text-gray-900">Misi Kami</h3>
+                <ul class="text-gray-600 mt-4 space-y-2 list-disc list-inside">
+                    <li>Menyediakan produk makanan dan aksesoris terbaik.</li>
+                    <li>Memberikan layanan grooming profesional.</li>
+                    <li>Edukasi pemilik hewan tentang kesehatan anabul.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h3 class="text-3xl font-extrabold text-gray-900">Temui <span class="text-puffles">Tim Kami</span></h3>
+            <p class="text-gray-600 mt-4">Di balik kenyamanan anabul, ada tim ahli yang berdedikasi.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center bg-white p-6 rounded-3xl shadow-sm border border-gray-100" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                <h4 class="font-bold text-gray-900">Sarah</h4>
+                <p class="text-puffles text-sm font-semibold">Store Manager</p>
+            </div>
+            <div class="text-center bg-white p-6 rounded-3xl shadow-sm border border-gray-100" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                <h4 class="font-bold text-gray-900">Budi</h4>
+                <p class="text-puffles text-sm font-semibold">Senior Groomer</p>
+            </div>
+            <div class="text-center bg-white p-6 rounded-3xl shadow-sm border border-gray-100" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=300" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                <h4 class="font-bold text-gray-900">Rina</h4>
+                <p class="text-puffles text-sm font-semibold">Pet Nutritionist</p>
+            </div>
+            <div class="text-center bg-white p-6 rounded-3xl shadow-sm border border-gray-100" data-aos="zoom-in" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?q=80&w=300" class="w-32 h-32 rounded-full mx-auto object-cover mb-4">
+                <h4 class="font-bold text-gray-900">Andi</h4>
+                <p class="text-puffles text-sm font-semibold">Customer Service</p>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-6 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="space-y-6">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-puffles leading-none">Bolu</h2>
+                    <p class="text-[9px] uppercase tracking-[0.3em] text-gray-400 font-bold">Pet shop</p>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Kami berdedikasi untuk memberikan kebahagiaan bagi hewan peliharaan Anda melalui produk berkualitas tinggi dan layanan kasih sayang sejak tahun 2024.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-puffles hover:bg-puffles hover:text-gray-900 transition-all duration-300">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-puffles hover:bg-puffles hover:text-gray-900 transition-all duration-300">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-puffles hover:bg-puffles hover:text-gray-900 transition-all duration-300">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6 relative inline-block">
+                    Layanan Kami
+                    <span class="absolute -bottom-2 left-0 w-8 h-1 bg-puffles"></span>
+                </h4>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Full Grooming</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Pet Hotel & Daycare</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Konsultasi Kesehatan</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors italic">Antar Jemput Anabul</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6 relative inline-block">
+                    Tautan Cepat
+                    <span class="absolute -bottom-2 left-0 w-8 h-1 bg-puffles"></span>
+                </h4>
+                <ul class="space-y-4 text-gray-400 text-sm font-semibold uppercase tracking-wider">
+                    <li><a href="#Etalase" class="hover:text-puffles transition-colors">Etalase Toko</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors">Tentang Kami</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors">Blog & Tips</a></li>
+                    <li><a href="#" class="hover:text-puffles transition-colors">Hubungi Kami</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6 relative inline-block">
+                    Berlangganan
+                    <span class="absolute -bottom-2 left-0 w-8 h-1 bg-puffles"></span>
+                </h4>
+                <p class="text-gray-400 text-xs mb-4">Dapatkan info promo spesial setiap minggu!</p>
+                <form class="flex flex-col space-y-3">
+                    <input type="email" placeholder="Email Anda" class="bg-gray-800 border-none rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-puffles outline-none">
+                    <button class="bg-puffles text-gray-900 font-bold py-3 rounded-md hover:brightness-110 transition uppercase text-xs tracking-widest">
+                        Daftar Sekarang
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 space-y-4 md:space-y-0">
+            <p>&copy; 2026 Bolu Pet Shop. Dibuat dengan cinta untuk anabul.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+</script>
+
+</body>
+</html>
